@@ -19,7 +19,10 @@
                         {{ Auth::user()->name }}
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" aria-disabled="true">Logout</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button class=" btn btn-danger " type="submit">LogOut</button>
+                        </form>
                     </li>
                 </ul>
 
