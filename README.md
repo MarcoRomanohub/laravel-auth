@@ -23,3 +23,6 @@ Laravel Boolfolio - Base
 BONUS
 Creazione del modello `Project` con relativa migrazione, seeder, controller e rotte e stampare la index  dei progetti (protetta da middleware)
 
+13. Aggiungere, fra le rotte admin, anche la gestione (CRUD) della tabella “projects”.
+Aggiungete anche due tabelle “technologies” e “types” con le relative CRUD (meglio se su una pagina sola)
+
