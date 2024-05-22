@@ -1,6 +1,6 @@
 @import '~bootstrap/scss/bootstrap';
 
-header {}
+
 
 .main-wrapper {
     height: calc(100vh - 62px);
@@ -26,5 +26,16 @@ aside {
                 }
             }
         }
+    }
+}
+
+.crud-table {
+    td:first-child {
+        width: 300px;
+    }
+
+    input {
+        border: none;
+        outline: none;
     }
 }

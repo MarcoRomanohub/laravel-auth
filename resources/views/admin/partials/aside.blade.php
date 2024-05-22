@@ -14,7 +14,7 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('admin.technologies.index') }}">
                     <i class="fa-brands fa-codepen"></i>
                     Tecnologie
                 </a>
