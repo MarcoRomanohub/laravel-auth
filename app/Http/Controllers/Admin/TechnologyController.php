@@ -62,9 +62,27 @@ class TechnologyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Technology $technology)
     {
-        //
+        $val_data = $request->validate(
+            [
+                'name' => 'required|min:2|max:30'
+            ],
+            [
+                'name.required' => 'Devi inserire il nome della categoria',
+                'name.min' => 'La categoria deve avere almeno :min caratteri',
+                'name.max' => 'La categoria deve avere non più di :max caratteri',
+            ]
+        );
+        $exists = Technology::where('name', $request->name)->first();
+        if ($exists) {
+            return redirect()->route('admin.technologies.index')->with('error', 'Tecnologia già esistente');
+        } else {
+
+            $val_data['slug'] = Helper::generateSlug($request->name, Technology::class);
+            $technology->update($val_data);
+            return redirect()->route('admin.technologies.index')->with('success', 'Tecnologia modificata');
+        }
     }
 
     /**

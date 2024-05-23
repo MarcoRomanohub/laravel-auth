@@ -2,6 +2,16 @@
 
 @section('content')
     <h2>Tecnologie</h2>
+    @if ($errors->any())
+        <div class="alert alert-danger" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     @if (session('error'))
         <div class="alert alert-danger" role="alert">
             {{ session('error') }}
@@ -33,10 +43,15 @@
             @foreach ($technologies as $technology)
                 <tr>
                     <td>
-                        <input type="text" value="{{ $technology->name }}">
+                        <form action="{{ route('admin.technologies.update', $technology) }}" method="POST"
+                            id="form-edit-{{ $technology->id }}">
+                            @csrf
+                            @method('PUT')
+                            <input type="text" value="{{ $technology->name }}" name="name">
+                        </form>
                     </td>
                     <td>
-                        <button class="btn btn-warning ">
+                        <button class="btn btn-warning" onclick="submitForm({{ $technology->id }})">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
                         <button class="btn btn-danger ">
@@ -48,4 +63,10 @@
 
         </tbody>
     </table>
+    <script>
+        function submitForm(id) {
+            const form = document.getElementById(`form-edit-${id}`);
+            form.submit();
+        }
+    </script>
 @endsection
