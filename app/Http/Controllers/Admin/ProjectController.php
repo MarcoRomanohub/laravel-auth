@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Project;
+use App\Http\Requests\ProjectRequest;
+use App\Functions\Helper;
 
 class ProjectController extends Controller
 {
@@ -12,7 +15,8 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $projects = Project::orderBy('id', 'desc')->paginate(15);
+        return view('admin.projects.index', compact('projects'));
     }
 
     /**
@@ -20,21 +24,27 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.projects.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProjectRequest $request)
     {
-        //
+        $form_data = $request->all();
+        $form_data['slug'] = Helper::generateSlug($form_data['title'], Project::class);
+
+        $new = new Project();
+        $new->fill($form_data);
+        $new->save();
+        return redirect()->route('admin.projects.show', $new);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Project $project)
     {
         //
     }

@@ -2,19 +2,19 @@
     <nav>
         <ul>
             <li>
-                <a href="#">
+                <a href="{{ route('admin.home') }}">
                     <i class="fa-solid fa-house"></i>
                     Home
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('admin.projects.index') }}">
                     <i class="fa-solid fa-diagram-project"></i>
                     Progetti
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('admin.projects.create') }}">
                     <i class="fa-solid fa-plus"></i>
                     Nuovo Progetto
                 </a>
