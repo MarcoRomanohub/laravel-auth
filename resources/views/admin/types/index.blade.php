@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('content')
-    <h2>Tecnologie</h2>
+    <h2>Tipologie</h2>
     @if ($errors->any())
         <div class="alert alert-danger" role="alert">
             <ul>
@@ -24,9 +24,9 @@
     @endif
 
     <div class=" my-4">
-        <form class="d-flex" action="{{ route('admin.technologies.store') }}" method="POST">
+        <form class="d-flex" action="{{ route('admin.types.store') }}" method="POST">
             @csrf
-            <input type="search" class="form-control me-2 " placeholder="Nuova Categoria" name="name">
+            <input type="search" class="form-control me-2 " placeholder="Nuova Tipologia" name="name">
             <button class="btn btn-outline-success" type="submit">Invia</button>
         </form>
     </div>
@@ -34,29 +34,29 @@
     <table class="table crud-table">
         <thead>
             <tr>
-                <th scope="col">Tecnologia</th>
+                <th scope="col">Tipologie</th>
                 <th scope="col">Azioni</th>
 
             </tr>
         </thead>
         <tbody>
-            @foreach ($technologies as $technology)
+            @foreach ($types as $type)
                 <tr>
                     <td>
-                        <form action="{{ route('admin.technologies.update', $technology) }}" method="POST"
-                            id="form-edit-{{ $technology->id }}">
+                        <form action="{{ route('admin.types.update', $type) }}" method="POST"
+                            id="form-edit-{{ $type->id }}">
                             @csrf
                             @method('PUT')
-                            <input type="text" value="{{ $technology->name }}" name="name">
+                            <input type="text" value="{{ $type->name }}" name="name">
                         </form>
                     </td>
                     <td class=" d-flex ">
-                        <button class="btn btn-warning me-1" onclick="submitForm({{ $technology->id }})">
+                        <button class="btn btn-warning me-1" onclick="submitForm({{ $type->id }})">
                             <i class="fa-solid fa-pencil"></i>
                         </button>
 
-                        <form action="{{ route('admin.technologies.destroy', $technology) }}" method="POST"
-                            onsubmit="return confirm('Sei sicuro di voler eliminare la Tecnologia?')">
+                        <form action="{{ route('admin.types.destroy', $type) }}" method="POST"
+                            onsubmit="return confirm('Sei sicuro di voler eliminare la Tipologia?')">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-danger ">
