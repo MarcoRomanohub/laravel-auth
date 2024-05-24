@@ -17,7 +17,10 @@
                     <td>{{ $project->id }}</td>
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->updated_at }}</td>
-                    <td>Otto</td>
+                    <td>
+                        <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-success"><i
+                                class="fa-solid fa-eye"></i></a>
+                    </td>
                 </tr>
             @empty
             @endforelse
