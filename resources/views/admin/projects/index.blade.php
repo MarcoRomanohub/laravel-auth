@@ -18,8 +18,12 @@
                     <td>{{ $project->title }}</td>
                     <td>{{ $project->updated_at }}</td>
                     <td>
-                        <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-success"><i
-                                class="fa-solid fa-eye"></i></a>
+                        <a href="{{ route('admin.projects.show', $project) }}" class="btn btn-success">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a href="{{ route('admin.projects.edit', $project) }}" class="btn btn-warning">
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
                     </td>
                 </tr>
             @empty
